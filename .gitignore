@@ -1,5 +1,4 @@
-.idea/**
+.idea/*
 vendor
 go.sum
 pumpkin
-
