@@ -1,8 +1,10 @@
-package pumpkin
+package main
 
-func initializer(){
-}
+import (
+	"log"
+)
 
-func main()  {
-	initializer()
+func main() {
+	server := NewServer()
+	log.Fatal(server.Run())
 }

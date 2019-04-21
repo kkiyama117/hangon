@@ -5,5 +5,5 @@ import (
 )
 
 type CreateUserInputPort interface {
-	CreateUser(u *model.User) *model.Status
+	CreateUser(u *model.User) error
 }

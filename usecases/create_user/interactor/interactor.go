@@ -7,18 +7,18 @@ import (
 )
 
 type interactor struct {
+	output outputport.CreateUserOutputPort
+}
+
+type CreateUserInteractor interface {
 	inputport.CreateUserInputPort
-	output          outputport.CreateUserOutputPort
 }
 
-type Interactor interface {
-	inputport.CreateUserInputPort
+// inherit input port and invoke presenter
+func NewInteractor(presenter outputport.CreateUserOutputPort) CreateUserInteractor {
+	return &interactor{presenter}
 }
 
-func NewInteractor(controller inputport.CreateUserInputPort, presenter outputport.CreateUserOutputPort) Interactor{
-	return &interactor{controller, presenter}
-}
-
-func (inter *interactor) CreateUser(user *model.User) *model.Status {
+func (inter *interactor) CreateUser(user *model.User) error {
 	return inter.output.CreateUser(user)
 }

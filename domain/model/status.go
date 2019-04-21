@@ -3,22 +3,21 @@ package model
 import "errors"
 
 type Status struct {
-	id       int
-	Text       string
-	StatusType statusType
+	id         int
+	StatusText statusText
 }
 
-type statusType string
+type statusText string
 
 const (
-	SuccessStatus statusType = "success"
-	ErrorStatus   statusType = "error"
+	SuccessStatusType statusText = "success"
+	ErrorStatusType   statusText = "error"
 )
 
 // return error from standard error package
 func (status *Status) Error() error {
-	if status.StatusType == ErrorStatus {
-		return errors.New(status.Text)
+	if status.StatusText != SuccessStatusType {
+		return nil
 	}
-	return nil
+	return errors.New(string(status.StatusText))
 }
