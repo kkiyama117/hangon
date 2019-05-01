@@ -34,7 +34,6 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	// Response
-	w.Header().Set("Content-Type", "application/json")
 	// DIPを鑑みて, Callback にする
 	output := view.NewViewOutput(w)
 	// push

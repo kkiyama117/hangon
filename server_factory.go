@@ -6,8 +6,12 @@ Inject some parts and create server instance
 package main
 
 import (
-	"github.com/go-chi/chi"
 	"net/http"
+
+	"github.com/go-chi/chi"
+	"github.com/go-chi/chi/middleware"
+	"github.com/go-chi/render"
+
 	"pumpkin/external_interfaces/server/handlers"
 )
 
@@ -32,6 +36,27 @@ func NewServer() Server {
 func Inject(server *server) *server {
 	server.router = chi.NewRouter()
 	// Initialize server
+	server.router.Use(middleware.RequestID)
+	server.router.Use(middleware.Logger)
+	server.router.Use(middleware.Recoverer)
+	server.router.Use(middleware.URLFormat)
+	server.router.Use(render.SetContentType(render.ContentTypeJSON))
+
+	// root
+	server.router.Get("/", func(w http.ResponseWriter, r *http.Request) {
+		_, _ = w.Write([]byte("root."))
+	})
+
+	// ping
+	server.router.Get("/ping", func(w http.ResponseWriter, r *http.Request) {
+		_, _ = w.Write([]byte("pong"))
+	})
+
+	// test panic
+	server.router.Get("/panic", func(w http.ResponseWriter, r *http.Request) {
+		panic("test")
+	})
+	// users
 	server.router.Post("/users", handlers.CreateUser)
 	return server
 }
