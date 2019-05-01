@@ -22,12 +22,13 @@ func NewPresenter(output output.Output) CreateUserPresenter {
 
 func (userPresenter *userPresenter) CreateUser(us *model.User) error {
 	// format user domain to []bytes for render
-	jsonBytes, err := json.Marshal(us)
+	users:=model.Users{*us}
+	res, err := json.Marshal(users)
 	if err != nil {
 		return err
 	}
 	// 描画処理
-	err = userPresenter.output.Push(jsonBytes)
+	err = userPresenter.output.Push(res)
 	if err != nil {
 		return err
 	}
