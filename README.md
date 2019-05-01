@@ -32,3 +32,4 @@ https://thenewstack.io/make-a-restful-json-api-go/
 https://deeeet.com/writing/2016/11/01/go-api-client/
 ## plugins
 [chi - router](https://github.com/go-chi/chi)
+https://github.com/go-chi/chi/blob/master/_examples/rest/main.go
