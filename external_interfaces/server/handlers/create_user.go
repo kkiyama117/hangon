@@ -33,12 +33,13 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 		w.WriteHeader(http.StatusBadRequest)
 		return
 	}
+
 	// Response
 	w.Header().Set("Content-Type", "application/json")
-	// DIPを鑑みて, Callback にする
+	// DIP を意識してcallback の形でレスポンスの処理を埋め込ませる.
 	output := view.NewViewOutput(w)
-	// push
+	// usecase を構築する.
 	c := controllers.NewController(interactor.NewInteractor(presenters.NewPresenter(output)))
-	// この内部でcallback が呼ばれて応答をする.
+	//下の関数の内部でUsecaseの処理と callback が呼ばれて応答をする.
 	err = c.CreateUser(&user)
 }
