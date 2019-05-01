@@ -1,9 +1,8 @@
 package view
 
 import (
-	"encoding/json"
-	"fmt"
 	"net/http"
+
 	"pumpkin/external_interfaces/common"
 )
 
@@ -16,6 +15,6 @@ func NewViewOutput(w http.ResponseWriter) common.Output {
 }
 
 func (op *output) Push(data []byte) error {
-	fmt.Printf("%v\n", json.NewEncoder(op.writer).Encode(data))
-	return nil
+	_, err := op.writer.Write(data)
+	return err
 }
