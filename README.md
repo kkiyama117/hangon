@@ -35,5 +35,8 @@ https://deeeet.com/writing/2016/11/01/go-api-client/
 [chi - router](https://github.com/go-chi/chi)
 https://github.com/go-chi/chi/blob/master/_examples/rest/main.go
 #### db
-https://github.com/gobuffalo/pop
-https://github.com/jmoiron/sqlx
+https://wapa5pow.com/compare-golang-database-libraries
+[goose(forked)](https://github.com/pressly/goose)
+https://dev.to/msh5/start-db-schema-migration-with-goose-bhg
+[gorm](https://github.com/jinzhu/gorm)
+http://doc.gorm.io/
