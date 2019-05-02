@@ -11,7 +11,7 @@ import (
 	"net/http"
 
 	"pumpkin/domain/model"
-	"pumpkin/external_interfaces/server/view"
+	"pumpkin/external_interfaces/web/view"
 	"pumpkin/interface_adapters/create_user/controllers"
 	"pumpkin/interface_adapters/create_user/presenters"
 	"pumpkin/usecases/create_user/interactor"
