@@ -9,7 +9,7 @@ func UserRouter()chi.Router{
 	// users
 	r:=chi.NewRouter()
 	r.Post("/", handlers.CreateUser)
-	r.Route("{userID}",func(r chi.Router){
+	r.Route("/{userID}",func(r chi.Router){
 		r.Get("/",nil)
 	})
 	return r
