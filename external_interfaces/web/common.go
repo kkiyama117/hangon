@@ -1,4 +1,4 @@
-package view
+package web
 
 import (
 	"net/http"
@@ -10,7 +10,7 @@ type output struct {
 	writer http.ResponseWriter
 }
 
-func NewViewOutput(w http.ResponseWriter) common.Output {
+func NewOutput(w http.ResponseWriter) common.Output {
 	return &output{w}
 }
 

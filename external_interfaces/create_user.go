@@ -3,7 +3,7 @@ Handler Factory
 
 Handling usecase to http.handler
 */
-package handlers
+package external_interfaces
 
 import (
 	"encoding/json"
@@ -11,7 +11,7 @@ import (
 	"net/http"
 
 	"pumpkin/domain/model"
-	"pumpkin/external_interfaces/web/view"
+	"pumpkin/external_interfaces/web"
 	"pumpkin/interface_adapters/create_user/controllers"
 	"pumpkin/interface_adapters/create_user/presenters"
 	"pumpkin/usecases/create_user/interactor"
@@ -37,7 +37,7 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	// Response
 	w.Header().Set("Content-Type", "application/json")
 	// DIP を意識してcallback の形でレスポンスの処理を埋め込ませる.
-	output := view.NewViewOutput(w)
+	output := web.NewOutput(w)
 	// usecase を構築する.
 	c := controllers.NewController(interactor.NewInteractor(presenters.NewPresenter(output)))
 	//下の関数の内部でUsecaseの処理と callback が呼ばれて応答をする.

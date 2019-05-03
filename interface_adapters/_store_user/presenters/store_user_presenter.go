@@ -1,8 +1,9 @@
-package _store_user
+package presenters
 
 import (
 	"pumpkin/domain/model"
 	output "pumpkin/external_interfaces/common"
+	"pumpkin/usecases"
 	"pumpkin/usecases/_store_user/outputport"
 )
 
@@ -12,6 +13,7 @@ type userPresenter struct {
 
 type StoreUserPresenter interface {
 	// inherit OutputPort interface
+	usecases.OutputPort
 	outputport.StoreUserOutputPort
 }
 

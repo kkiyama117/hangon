@@ -1,6 +1,10 @@
 development:
+    driver: sqlite3
+    open: development.sqlite3
+
+production:
     driver: postgres
-    open: user=kiyama dbname=test_db password=password
+    open: tcp:db:5432*test_db/kiyama/password
 
 customimport:
     driver: customdriver

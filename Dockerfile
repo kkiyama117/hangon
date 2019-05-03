@@ -13,6 +13,7 @@ ENV LANG="ja_JP.UTF-8" \
     LC_ALL="ja_JP.UTF-8" \
     TZ="JST-9" \
     GO111MODULE=on
+RUN go get -u bitbucket.org/liamstask/goose
 
 # WORKDIR -> $GOPATH
 COPY . ./src

@@ -3,7 +3,7 @@ Server Factory
 
 Inject some parts and create web instance
 */
-package main
+package factories
 
 import (
 	"errors"
@@ -12,7 +12,7 @@ import (
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/render"
-	"pumpkin/external_interfaces/web/handlers"
+	"pumpkin/external_interfaces"
 )
 
 type server struct {
@@ -60,22 +60,21 @@ func InjectURIWithRoot(server *server) error {
 	return nil
 }
 
-
 // inject router and handler and usecase
 func Inject(server *server) *server {
 	server.router = chi.NewRouter()
 	// Initialize web
 	err := InjectMiddleware(server)
-	if err !=nil{
+	if err != nil {
 		panic("error with inject middleware")
 	}
 	// root router
 	err = InjectURIWithRoot(server)
-	if err !=nil{
+	if err != nil {
 		panic("error with inject root router")
 	}
 	// users
-	server.router.Post("/users", handlers.CreateUser)
+	server.router.Post("/users", external_interfaces.CreateUser)
 	return server
 }
 
