@@ -16,8 +16,8 @@ func NewController(inputPort inputport.CreateUserInputPort) inputport.CreateUser
 	return &userController{inputPort}
 }
 
-func (userController *userController) DoMethod(pUser *model.User) error {
+func (userController *userController) DoUsecase(pUser *model.User) error {
 	// interactorに処理を委譲して対応するPresenterを呼び出してもらう
-	return userController.inputPort.DoMethod(pUser)
+	return userController.inputPort.DoUsecase(pUser)
 }
 

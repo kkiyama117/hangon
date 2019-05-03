@@ -1,16 +1,14 @@
-package web
+package common
 
 import (
 	"net/http"
-
-	"pumpkin/external_interfaces/common"
 )
 
 type output struct {
 	writer http.ResponseWriter
 }
 
-func NewOutput(w http.ResponseWriter) common.Output {
+func NewOutput(w http.ResponseWriter) Output {
 	return &output{w}
 }
 

@@ -5,5 +5,5 @@ import (
 )
 
 type CreateUserInputPort interface {
-	DoMethod(user *model.User) error
+	DoUsecase(user *model.User) error
 }
