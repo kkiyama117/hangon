@@ -12,7 +12,7 @@ type userController struct {
 // Add gateways
 // invoke Input port
 // Use interactor as instance of InputPort
-func NewController(inputPort inputport.CreateUserInputPort) *userController {
+func NewController(inputPort inputport.CreateUserInputPort) inputport.CreateUserInputPort{
 	return &userController{inputPort}
 }
 

@@ -43,3 +43,7 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	//下の関数の内部でUsecaseの処理と callback が呼ばれて応答をする.
 	err = c.CreateUser(&user)
 }
+
+func GetC()  {
+
+}
