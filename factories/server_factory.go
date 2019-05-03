@@ -12,7 +12,6 @@ import (
 	"github.com/go-chi/chi"
 	"github.com/go-chi/chi/middleware"
 	"github.com/go-chi/render"
-	"pumpkin/external_interfaces"
 )
 
 type server struct {
@@ -73,10 +72,10 @@ func Inject(server *server) *server {
 	if err != nil {
 		panic("error with inject root router")
 	}
-	// users
-	server.router.Post("/users", external_interfaces.CreateCreateUser(external_interfaces.GetC))
+	server.router.Mount("/users",UserRouter())
 	return server
 }
+
 
 func (server *server) Run() error {
 	// return error
