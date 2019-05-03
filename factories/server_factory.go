@@ -19,7 +19,7 @@ type server struct {
 }
 
 type Server interface {
-	Run() error
+	Run(string) error
 }
 
 func NewServer() Server {
@@ -46,7 +46,7 @@ func InjectMiddleware(server *server) error {
 	return nil
 }
 
-func InjectURIWithRoot(server *server) error {
+func InjectURIWithRoot(server *server) {
 	// root
 	server.router.Get("/", func(w http.ResponseWriter, r *http.Request) {
 		_, _ = w.Write([]byte("root."))
@@ -56,7 +56,6 @@ func InjectURIWithRoot(server *server) error {
 	server.router.Get("/panic", func(w http.ResponseWriter, r *http.Request) {
 		panic("test")
 	})
-	return nil
 }
 
 // inject router and handler and usecase
@@ -68,15 +67,13 @@ func Inject(server *server) *server {
 		panic("error with inject middleware")
 	}
 	// root router
-	err = InjectURIWithRoot(server)
-	if err != nil {
-		panic("error with inject root router")
-	}
+	InjectURIWithRoot(server)
+	// users
 	server.router.Mount("/users", UserRouter())
 	return server
 }
 
-func (server *server) Run() error {
+func (server *server) Run(addr string) error {
 	// return error
-	return http.ListenAndServe(":3000", server.router)
+	return http.ListenAndServe(addr, server.router)
 }
