@@ -72,10 +72,9 @@ func Inject(server *server) *server {
 	if err != nil {
 		panic("error with inject root router")
 	}
-	server.router.Mount("/users",UserRouter())
+	server.router.Mount("/users", UserRouter())
 	return server
 }
-
 
 func (server *server) Run() error {
 	// return error
