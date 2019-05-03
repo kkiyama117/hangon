@@ -21,7 +21,7 @@ func NewPresenter(output output.Output) CreateUserPresenter {
 	return &userPresenter{output}
 }
 
-func (userPresenter *userPresenter) CreateUser(pUser *model.User) error {
+func (userPresenter *userPresenter) DoMethod(pUser *model.User) error {
 	// format user domain to []bytes for render
 	users:=model.Users{*pUser}
 	res, err := json.Marshal(users)

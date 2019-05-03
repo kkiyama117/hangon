@@ -19,6 +19,6 @@ func NewInteractor(presenter outputport.CreateUserOutputPort) CreateUserInteract
 	return &interactor{presenter}
 }
 
-func (inter *interactor) CreateUser(user *model.User) error {
-	return inter.output.CreateUser(user)
+func (inter *interactor) DoMethod(user *model.User) error {
+	return inter.output.DoMethod(user)
 }

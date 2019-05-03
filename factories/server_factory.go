@@ -74,7 +74,7 @@ func Inject(server *server) *server {
 		panic("error with inject root router")
 	}
 	// users
-	server.router.Post("/users", external_interfaces.CreateUser)
+	server.router.Post("/users", external_interfaces.CreateCreateUser(external_interfaces.GetC))
 	return server
 }
 
