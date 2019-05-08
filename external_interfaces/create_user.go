@@ -12,10 +12,10 @@ import (
 
 	"pumpkin/domain/model"
 	"pumpkin/external_interfaces/common"
-	"pumpkin/usecases/create_user/inputport"
+	"pumpkin/interface_adapters/create_user/controllers"
 )
 
-func CreateUser(injectorWithOutput func(common.Output) inputport.CreateUserInputPort) func(http.ResponseWriter, *http.Request) {
+func CreateUser(injectorWithOutput func(common.Output) controllers.CreateUserController) func(http.ResponseWriter, *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		// Request
 		// get data from request
@@ -41,6 +41,6 @@ func CreateUser(injectorWithOutput func(common.Output) inputport.CreateUserInput
 		// usecase を構築する.
 		c := injectorWithOutput(output)
 		//下の関数の内部でUsecaseの処理と injectorWithOutput が呼ばれて応答をする.
+		err = c.CreateUser(&user)
 	}
 }
-

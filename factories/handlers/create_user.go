@@ -13,5 +13,5 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	// external_interfaces内に直接handleFuncの形式(この関数の形式)で書いたほうが見易いが
 	// factory(injector)と役割を明確に分離するためにファイルを分けた.
 	// TODO: もっと上手い実装があるはず.
-	external_interfaces.CreateUser(us.InjectedUsecase)(w, r)
+	external_interfaces.CreateUser(us.InjectedCreateUser)(w, r)
 }
