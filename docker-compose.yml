@@ -47,7 +47,7 @@ services:
     networks:
       - go_back
 #    volumes:
-#      - "db-data:/var/lib/postgre"
+#      - "db-data:/var/lib/postgres"
 
 #  redis:
 #    image: redis

@@ -2,12 +2,12 @@ package presenters
 
 import (
 	"pumpkin/domain/model"
-	output "pumpkin/external_interfaces/common"
+	"pumpkin/external_interfaces"
 	"pumpkin/usecases/_store_user/outputport"
 )
 
 type userPresenter struct {
-	output output.Output
+	output external_interfaces.Output
 }
 
 type StoreUserPresenter interface {
@@ -15,13 +15,12 @@ type StoreUserPresenter interface {
 	outputport.StoreUserOutputPort
 }
 
-func NewPresenter(output output.Output) StoreUserPresenter {
+func NewPresenter(output external_interfaces.Output) StoreUserPresenter {
 	return &userPresenter{output}
 }
 
 func (userPresenter *userPresenter) StoreUser(pUser *model.User) error {
 	user:=*pUser
-	// 描画処理
 	err := userPresenter.output.Push(user)
 	if err != nil {
 		return err

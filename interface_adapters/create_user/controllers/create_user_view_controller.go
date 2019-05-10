@@ -15,7 +15,7 @@ type CreateUserController interface {
 // Add gateways
 // invoke Input port
 // Use interactor as instance of InputPort
-func NewController(inputPort inputport.CreateUserInputPort) *controller {
+func NewController(inputPort inputport.CreateUserInputPort) CreateUserController{
 	return &controller{inputPort}
 }
 

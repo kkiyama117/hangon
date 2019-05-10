@@ -4,7 +4,7 @@ development:
 
 production:
     driver: postgres
-    open: tcp:db:5432*test_db/kiyama/password
+    open: host=db dbname=test_db user=kiyama password=password sslmode=disable
 
 customimport:
     driver: customdriver

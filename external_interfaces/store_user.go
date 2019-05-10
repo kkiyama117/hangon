@@ -5,7 +5,6 @@ import (
 
 	"github.com/jinzhu/gorm"
 	"pumpkin/domain/model"
-	"pumpkin/external_interfaces/common"
 )
 
 type database struct {
@@ -13,7 +12,7 @@ type database struct {
 }
 
 // create database
-func NewOutput(dialect string, args ...interface{}) common.Output {
+func NewDBOutput(dialect string, args ...interface{}) Output {
 	db, err := gorm.Open(dialect, args)
 	if err != nil {
 		log.Fatal(err)

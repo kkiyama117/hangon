@@ -1,4 +1,4 @@
-package common
+package external_interfaces
 
 import (
 	"net/http"
@@ -8,7 +8,7 @@ type output struct {
 	writer http.ResponseWriter
 }
 
-func NewOutput(w http.ResponseWriter) Output {
+func NewHttpOutput(w http.ResponseWriter) Output {
 	return &output{w}
 }
 
