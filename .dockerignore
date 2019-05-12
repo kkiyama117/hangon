@@ -1,5 +1,6 @@
 .git/
 .idea/
 go.sum
+Dockerfile
 
 *.sqlite

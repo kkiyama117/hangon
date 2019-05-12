@@ -4,12 +4,12 @@ import (
 	"encoding/json"
 
 	"pumpkin/domain/model"
-	output "pumpkin/external_interfaces/common"
+	"pumpkin/interface_adapters/create_user/driver_ports"
 	"pumpkin/usecases/create_user/outputport"
 )
 
 type userPresenter struct {
-	output output.Output
+	output driver_ports.APIOutput
 }
 
 type CreateUserPresenter interface {
@@ -17,11 +17,11 @@ type CreateUserPresenter interface {
 	outputport.CreateUserOutputPort
 }
 
-func NewPresenter(output output.Output) CreateUserPresenter {
+func NewPresenter(output driver_ports.APIOutput) CreateUserPresenter {
 	return &userPresenter{output}
 }
 
-func (userPresenter *userPresenter) CreateUser(pUser *model.User) error {
+func (userPresenter *userPresenter) DoUsecase(pUser *model.User) error {
 	// format user domain to []bytes for render
 	users:=model.Users{*pUser}
 	res, err := json.Marshal(users)
@@ -29,7 +29,7 @@ func (userPresenter *userPresenter) CreateUser(pUser *model.User) error {
 		return err
 	}
 	// 描画処理
-	err = userPresenter.output.Push(res)
+	err = userPresenter.output.ShowUser(res)
 	if err != nil {
 		return err
 	}
