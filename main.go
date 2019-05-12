@@ -2,9 +2,11 @@ package main
 
 import (
 	"log"
+
+	"pumpkin/factories"
 )
 
 func main() {
-	server := NewServer()
-	log.Fatal(server.Run())
+	server := factories.NewServer()
+	log.Fatal(server.Run(":3000"))
 }

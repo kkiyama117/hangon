@@ -1,7 +1,9 @@
 package outputport
 
-import "pumpkin/domain/model"
+import (
+	"pumpkin/domain/model"
+)
 
 type CreateUserOutputPort interface {
-	CreateUser(user *model.User) error
+	DoUsecase(user *model.User) error
 }

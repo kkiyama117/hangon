@@ -1,10 +1,11 @@
 development:
-    driver: mymysql
-    open: tcp:localhost:3306*sample/kiyama/19980117
-#development:
-#    driver: postgres
-#    open: tcp:localhost:3306*hooop/postgres/yoshi0923
-    
+    driver: sqlite3
+    open: development.sqlite3
+
+production:
+    driver: postgres
+    open: host=db dbname=test_db user=kiyama password=password sslmode=disable
+
 customimport:
     driver: customdriver
     open: customdriver open

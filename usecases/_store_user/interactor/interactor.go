@@ -10,7 +10,7 @@ type interactor struct {
 	output outputport.StoreUserOutputPort
 }
 
-type CreateUserInteractor interface {
+type StoreUserInteractor interface {
 	inputport.StoreUserInputPort
 }
 
