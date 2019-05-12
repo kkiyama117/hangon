@@ -6,7 +6,7 @@ import (
 	"net/http"
 
 	"pumpkin/domain/model"
-	"pumpkin/external_interfaces"
+	"pumpkin/framework_drivers"
 	us "pumpkin/factories/usecases"
 )
 
@@ -30,10 +30,21 @@ func CreateUser(w http.ResponseWriter, r *http.Request) {
 	}
 	// User model をゲットした
 
+	// store user usecase
+	// usecase を構築する.
+	dbOutput := framework_drivers.NewDBOutput(framework_drivers.WithDBOption("sqlite3", "development.sqlite3"))
+	storeUser := us.InjectedStoreUser(dbOutput)
+	// Usecase処理実行
+	err = storeUser.StoreUser(&user)
+	if user.ID < 0 {
+		w.WriteHeader(http.StatusInternalServerError)
+		return
+	}
+
 	// Response
 	w.Header().Set("Content-Type", "application/json")
 	// DIP を意識して, callback の形でレスポンスの処理を埋め込ませる.
-	output := external_interfaces.NewHttpOutput(w)
+	output := framework_drivers.NewAPIOutput(w)
 	// usecase を構築する.
 	c := us.InjectedCreateUser(output)
 	//下の関数の内部でUsecaseの処理と injectorWithOutput が呼ばれて応答をする.

@@ -6,12 +6,12 @@ import (
 )
 
 type User struct {
-	ID        uint       `json:"-" sql:"primary_key"`
+	ID        uint       `json:"id" sql:"primary_key"`
 	UserName  string     `json:"name"`
 	Mail      string     `json:"email"`
-	CreatedAt time.Time  `json:"-"`
-	UpdatedAt time.Time `json:"-"`
-	DeletedAt *time.Time `json:"-" sql:"index"`
+	CreatedAt time.Time
+	UpdatedAt time.Time
+	DeletedAt *time.Time `sql:"index"`
 }
 
 type Users []User
