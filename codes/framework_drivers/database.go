@@ -23,6 +23,6 @@ func (d *database) StoreUser(pUser *model.User) error {
 	defer db.Close()
 
 	db.Create(pUser)
-	db.First(pUser, "user_name", pUser.UserName)
+	db.Where("user_name=?", pUser.UserName).First(pUser)
 	return nil
 }

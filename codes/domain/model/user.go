@@ -6,7 +6,7 @@ import (
 )
 
 type User struct {
-	ID        uint   `json:"id" sql:"primary_key"`
+	ID        uint   `json:"id"`
 	UserName  string `json:"name"`
 	Mail      string `json:"email"`
 	CreatedAt time.Time

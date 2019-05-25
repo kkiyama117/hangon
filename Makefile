@@ -26,7 +26,7 @@ status_prod_db: set_prod_db_sql_file
 	goose -env production status
 migrate_prod_db: set_prod_db_sql_file
 	goose -env production up
-down_db: set_prod_db_sql_file
+down_prod_db: set_prod_db_sql_file
 	goose -env production down
 set_prod_db_sql_file: $(PROGRAM)
-	cp -f db/pq/* db/migrations/
+	cp db/pq/* db/migrations/
