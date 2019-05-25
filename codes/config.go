@@ -8,8 +8,8 @@ import (
 )
 
 type config struct {
-	key   string
-	value string
+	Key   string
+	Value string
 }
 
 type Configs []*config
@@ -24,18 +24,27 @@ func GetConfigs() *Configs {
 	}
 	log.Println(DBType, DBName)
 	return &Configs{
-		{key: "DBType", value: DBType},
-		{key: "DBHost", value: os.Getenv("DB_HOST")},
-		{key: "DBName", value: DBName},
-		{key: "DBUser", value: os.Getenv("DB_USER")},
-		{key: "DBPass", value: os.Getenv("DB_PASS")},
+		{Key: "DBType", Value: DBType},
+		{Key: "DBHost", Value: os.Getenv("DB_HOST")},
+		{Key: "DBName", Value: DBName},
+		{Key: "DBUser", Value: os.Getenv("DB_USER")},
+		{Key: "DBPass", Value: os.Getenv("DB_PASS")},
 	}
 }
-func (cs *Configs) Get(key string) string {
+func (cs *Configs) GetValue(key string) string {
 	for _, conf := range *cs {
-		if conf.key == key {
-			return conf.value
+		if conf.Key == key {
+			return conf.Value
 		}
 	}
 	return ""
+}
+
+func (cs *Configs) Get(key string) (string, string) {
+	for _, conf := range *cs {
+		if conf.Key == key {
+			return conf.Key, conf.Value
+		}
+	}
+	return "", ""
 }

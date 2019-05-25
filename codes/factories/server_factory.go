@@ -6,7 +6,6 @@ Inject some parts and create web instance
 package factories
 
 import (
-	"encoding/json"
 	"errors"
 	"net/http"
 
@@ -41,14 +40,14 @@ func NewServer() Server {
 func Inject(server *server) *server {
 	config := codes.GetConfigs()
 	server.router = chi.NewRouter()
-	db:= InjectDBFunc(WithDBOption(config))
+	db := InjectDBFunc(WithDBOption(config))
 	// Initialize web
 	err := InjectMiddleware(server)
 	if err != nil {
 		panic("error with inject middleware")
 	}
 	// root router
-	InjectURIWithRoot(server)
+	server.router.Mount("/", MainRouter())
 	// users
 	server.router.Mount("/users", UserRouter(db))
 	return server
@@ -67,28 +66,6 @@ func InjectMiddleware(server *server) error {
 	server.router.Use(middleware.URLFormat)
 	server.router.Use(render.SetContentType(render.ContentTypeJSON))
 	return nil
-}
-
-func InjectURIWithRoot(server *server) {
-	// root
-	server.router.Get("/", func(w http.ResponseWriter, r *http.Request) {
-		_, _ = w.Write([]byte("root."))
-	})
-
-	// test panic
-	server.router.Get("/panic", func(w http.ResponseWriter, r *http.Request) {
-		panic("test")
-	})
-
-	// get config environment
-	server.router.Get("/config", func(w http.ResponseWriter, r *http.Request) {
-		confs := codes.GetConfigs()
-		for _, conf := range *confs {
-			data, _ := json.Marshal(conf)
-			_, _ = w.Write([]byte(data))
-		}
-	})
-
 }
 
 func (server *server) Run(addr string) error {

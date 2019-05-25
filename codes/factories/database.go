@@ -18,8 +18,8 @@ type DBOption func(option *dbOption)
 
 // TODO: Refactor
 func WithDBOption(configs *codes.Configs) DBOption {
-	dialect := configs.Get("DBType")
-	dbName := configs.Get("DBName")
+	dialect := configs.GetValue("DBType")
+	dbName := configs.GetValue("DBName")
 	switch dialect {
 	case "sqlite3":
 		return func(option *dbOption) {
@@ -29,9 +29,9 @@ func WithDBOption(configs *codes.Configs) DBOption {
 	case "postgres":
 		return func(option *dbOption) {
 			option.dialect = dialect
-			dbHost := configs.Get("DBHost")
-			dbUser := configs.Get("DBUser")
-			dbPass := configs.Get("DBPass")
+			dbHost := configs.GetValue("DBHost")
+			dbUser := configs.GetValue("DBUser")
+			dbPass := configs.GetValue("DBPass")
 			option.args = "host=" + dbHost + " user=" + dbUser + " db_name=" + dbName + " password=" + dbPass
 		}
 	default:
