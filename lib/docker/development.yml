@@ -1,0 +1,7 @@
+version: "3"
+services:
+  app:
+    environment:
+      APP_ENV: development
+      DB_TYPE: sqlite3
+      DB_NAME: development.sqlite3

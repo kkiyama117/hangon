@@ -1,6 +1,34 @@
 # hangon
 Sample Go server with Clean Architecture
 
+## Dir
+### GO
+- main.go
+#### clean architecture
+- domain/
+- usecases/
+- interface_adapters/
+- framework_drivers/
+#### net/http
+- factories/ (handler)
+#### go modules
+- go.mod
+### Database
+- db/
+### docker etc. (AutoDeploy)
+- Dockerfile
+- docker-compose.yml
+- .dockerignore
+- Makefile
+### Nginx
+- lib/
+- static/
+### others
+- README.md (this file)
+- .gitignore
+- LICENCE
+- 
+
 ## References
 Thanks for every people created programs written articles
 ### Clean architecture
