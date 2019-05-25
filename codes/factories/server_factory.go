@@ -40,7 +40,7 @@ func NewServer() Server {
 func Inject(server *server) *server {
 	config := codes.GetConfigs()
 	server.router = chi.NewRouter()
-	db := InjectDBFunc(WithDBOption(config))
+	dbFunc := InjectDBFunc(WithDBOption(config))
 	// Initialize web
 	err := InjectMiddleware(server)
 	if err != nil {
@@ -49,7 +49,7 @@ func Inject(server *server) *server {
 	// root router
 	server.router.Mount("/", MainRouter())
 	// users
-	server.router.Mount("/users", UserRouter(db))
+	server.router.Mount("/users", UserRouter(dbFunc))
 	return server
 }
 

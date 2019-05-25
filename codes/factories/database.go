@@ -32,7 +32,9 @@ func WithDBOption(configs *codes.Configs) DBOption {
 			dbHost := configs.GetValue("DBHost")
 			dbUser := configs.GetValue("DBUser")
 			dbPass := configs.GetValue("DBPass")
-			option.args = "host=" + dbHost + " user=" + dbUser + " db_name=" + dbName + " password=" + dbPass
+			option.args = "host=" + dbHost + " port=5432 user=" + dbUser + " dbname=" + dbName + " password=" + dbPass +
+				" sslmode=disable"
+			log.Print(option.args)
 		}
 	default:
 		log.Fatal("option is nil")

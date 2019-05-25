@@ -1,6 +1,7 @@
 package factories
 
 import (
+	"encoding/json"
 	"net/http"
 
 	"github.com/go-chi/chi"
@@ -24,10 +25,9 @@ func MainRouter() chi.Router {
 	// get config environment
 	router.Get("/config", func(w http.ResponseWriter, r *http.Request) {
 		pConf := codes.GetConfigs()
-		_, _ = w.Write([]byte("environment variables\n"))
-		for _, conf := range *pConf {
-			_, _ = w.Write([]byte(conf.Key + ":" + conf.Value + "\n"))
-		}
+		cr := *pConf
+		jsonData, _ := json.Marshal(cr)
+		_, _ = w.Write([]byte(jsonData))
 	})
 	return router
 }

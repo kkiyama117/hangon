@@ -4,7 +4,7 @@ development:
 
 production:
     driver: postgres
-    open: host=db dbname=test_db user=kiyama password=password sslmode=disable
+    open: host=$DB_HOST dbname=$DB_NAME user=$DB_USER password=$DB_PASS sslmode=disable
 
 customimport:
     driver: customdriver

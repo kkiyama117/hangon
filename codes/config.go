@@ -3,7 +3,6 @@ package codes
 // TODO: Refactor
 
 import (
-	"log"
 	"os"
 )
 
@@ -17,12 +16,10 @@ type Configs []*config
 func GetConfigs() *Configs {
 	DBType := os.Getenv("DB_TYPE")
 	DBName := os.Getenv("DB_NAME")
-	log.Println(DBType, DBName)
 	if DBType == "" {
 		DBType = "sqlite3"
 		DBName = "development.sqlite3"
 	}
-	log.Println(DBType, DBName)
 	return &Configs{
 		{Key: "DBType", Value: DBType},
 		{Key: "DBHost", Value: os.Getenv("DB_HOST")},
