@@ -1,4 +1,4 @@
-# Security Policy
+# Security Policy(WIP, only copied from templates)
 
 ## Supported Versions
 
