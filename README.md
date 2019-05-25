@@ -1,7 +1,14 @@
 # hangon
 Sample Go server with Clean Architecture
 ## Usage
+```$bash
 make run_prod
+# only for migrate_db or first run
+make init_prod_db
+# To stop run this command on the other shell
+make stop_prod
+# you can also stop docker server with ctrl-C
+```
 
 ## Dir
 ### GO
