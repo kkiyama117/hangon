@@ -1,5 +1,7 @@
 # hangon
 Sample Go server with Clean Architecture
+## Usage
+make run_prod
 
 ## Dir
 ### GO
@@ -27,7 +29,6 @@ Sample Go server with Clean Architecture
 - README.md (this file)
 - .gitignore
 - LICENCE
-- 
 
 ## References
 Thanks for every people created programs written articles
