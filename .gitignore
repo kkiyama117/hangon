@@ -3,3 +3,4 @@ vendor
 go.sum
 pumpkin
 *.sqlite3
+db/migrations/*.sql
