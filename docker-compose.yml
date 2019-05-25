@@ -20,34 +20,16 @@ services:
   app:
     tty: true
     stdin_open: true
-    links:
-      - db
     build:
       context: .
     command: ./pumpkin
     expose:
       - "3000"
-    depends_on:
-      - db
 #      - redis
     networks:
       - go_front
-      - go_back
     environment:
       - 'GO111MODULE=on'
-
-  db:
-    image: postgres
-    environment:
-      POSTGRES_DB: test_db
-      POSTGRES_USER: kiyama
-      POSTGRES_PASSWORD: password
-    expose:
-      - "5432"
-    networks:
-      - go_back
-#    volumes:
-#      - "db-data:/var/lib/postgres"
 
 #  redis:
 #    image: redis
@@ -59,10 +41,7 @@ services:
 #      - redis:/data
 
 #volumes:
-#  db-data:
-#    driver: local
 #  redis:
 
 networks:
   go_front:
-  go_back:

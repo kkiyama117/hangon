@@ -1,5 +1,41 @@
 # hangon
 Sample Go server with Clean Architecture
+## Usage
+```$bash
+make run_prod
+# only for migrate_db or first run
+make init_prod_db
+# To stop run this command on the other shell
+make stop_prod
+# you can also stop docker server with ctrl-C
+```
+
+## Dir
+### GO
+- main.go
+#### clean architecture
+- domain/
+- usecases/
+- interface_adapters/
+- framework_drivers/
+#### net/http
+- factories/ (handler)
+#### go modules
+- go.mod
+### Database
+- db/
+### docker etc. (AutoDeploy)
+- Dockerfile
+- docker-compose.yml
+- .dockerignore
+- Makefile
+### Nginx
+- lib/
+- static/
+### others
+- README.md (this file)
+- .gitignore
+- LICENCE
 
 ## References
 Thanks for every people created programs written articles

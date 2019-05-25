@@ -3,7 +3,7 @@ package main
 import (
 	"log"
 
-	"pumpkin/factories"
+	"pumpkin/codes/factories"
 )
 
 func main() {
