@@ -2,9 +2,13 @@
 Sample Go server with Clean Architecture
 ## Usage
 ```$bash
-make run_prod
+# for first run
+# run build when you change something at `code` folder
+make build_prod
 # only for migrate_db or first run
-make init_prod_db
+make init_prod
+# run docker-compose with some setting files
+make run_prod
 # To stop run this command on the other shell
 make stop_prod
 # you can also stop docker server with ctrl-C
