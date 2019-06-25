@@ -1,0 +1,21 @@
+version: "3"
+services:
+  db:
+    image: postgres
+    environment:
+      POSTGRES_DB: test_db
+      POSTGRES_USER: kiyama
+      POSTGRES_PASSWORD: password
+    ports:
+      - 5432:5432
+    networks:
+      - go_back
+  #    volumes:
+  #      - "db-data:/var/lib/postgres"
+
+#volumes:
+#  db-data:
+#    driver: local
+
+networks:
+  go_back:
