@@ -3,14 +3,14 @@ package framework_drivers
 import (
 	"net/http"
 
-	driver_ports2 "pumpkin/codes/interface_adapters/create_user/driver_ports"
+	"pumpkin/codes/interface_adapters/create_user/driver_ports"
 )
 
 type output struct {
 	writer http.ResponseWriter
 }
 
-func NewAPIOutput(w http.ResponseWriter) driver_ports2.APIOutput {
+func NewAPIOutput(w http.ResponseWriter) driver_ports.APIOutput {
 	return &output{w}
 }
 
