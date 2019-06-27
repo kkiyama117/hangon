@@ -7,7 +7,7 @@ import (
 	"pumpkin/codes/usecases/_show_user/interactor"
 )
 
-func InjectedCreateUser(output driver_ports.APIOutput) controllers.CreateUserController {
+func InjectedShowUser(output driver_ports.APIOutput) controllers.CreateUserController {
 	pres := presenters.NewPresenter(output)
 	inter := interactor.NewInteractor(pres)
 	c := controllers.NewController(inter)

@@ -48,7 +48,7 @@ func InjectCreateUser(dbFunc func() *gorm.DB) http.HandlerFunc {
 		// DIP を意識して, callback の形でレスポンスの処理を埋め込ませる.
 		output := framework_drivers.NewAPIOutput(w)
 		// usecase を構築する.
-		c := usecases.InjectedCreateUser(output)
+		c := usecases.InjectedShowUser(output)
 		//下の関数の内部でUsecaseの処理と injectorWithOutput が呼ばれて応答をする.
 		err = c.CreateUser(&user)
 	}
