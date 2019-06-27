@@ -4,6 +4,6 @@ import (
 	"pumpkin/codes/domain/model"
 )
 
-type CreateUserInputPort interface {
+type ShowUserInputPort interface {
 	DoUsecase(user *model.User) error
 }

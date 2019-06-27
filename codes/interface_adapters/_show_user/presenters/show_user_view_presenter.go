@@ -12,12 +12,12 @@ type userPresenter struct {
 	output driver_ports.APIOutput
 }
 
-type CreateUserPresenter interface {
+type ShowUserPresenter interface {
 	// inherit OutputPort interface
-	outputport.CreateUserOutputPort
+	outputport.ShowUserOutputPort
 }
 
-func NewPresenter(output driver_ports.APIOutput) CreateUserPresenter {
+func NewPresenter(output driver_ports.APIOutput) ShowUserPresenter {
 	return &userPresenter{output}
 }
 

@@ -50,6 +50,6 @@ func InjectCreateUser(dbFunc func() *gorm.DB) http.HandlerFunc {
 		// usecase を構築する.
 		c := usecases.InjectedShowUser(output)
 		//下の関数の内部でUsecaseの処理と injectorWithOutput が呼ばれて応答をする.
-		err = c.CreateUser(&user)
+		err = c.ShowUser(&user)
 	}
 }

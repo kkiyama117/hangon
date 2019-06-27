@@ -7,15 +7,15 @@ import (
 )
 
 type interactor struct {
-	output outputport.CreateUserOutputPort
+	output outputport.ShowUserOutputPort
 }
 
-type CreateUserInteractor interface {
-	inputport.CreateUserInputPort
+type ShowUserInteractor interface {
+	inputport.ShowUserInputPort
 }
 
 // inherit input port and invoke presenter
-func NewInteractor(presenter outputport.CreateUserOutputPort) CreateUserInteractor {
+func NewInteractor(presenter outputport.ShowUserOutputPort) ShowUserInteractor {
 	return &interactor{presenter}
 }
 
