@@ -2,8 +2,8 @@ package interactor
 
 import (
 	"pumpkin/codes/domain/model"
-	"pumpkin/codes/usecases/create_user/inputport"
-	"pumpkin/codes/usecases/create_user/outputport"
+	"pumpkin/codes/usecases/_show_user/inputport"
+	"pumpkin/codes/usecases/_show_user/outputport"
 )
 
 type interactor struct {

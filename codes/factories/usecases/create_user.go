@@ -1,10 +1,10 @@
 package usecases
 
 import (
-	"pumpkin/codes/interface_adapters/create_user/controllers"
-	"pumpkin/codes/interface_adapters/create_user/driver_ports"
-	"pumpkin/codes/interface_adapters/create_user/presenters"
-	"pumpkin/codes/usecases/create_user/interactor"
+	"pumpkin/codes/interface_adapters/show_user/controllers"
+	"pumpkin/codes/interface_adapters/show_user/driver_ports"
+	"pumpkin/codes/interface_adapters/show_user/presenters"
+	"pumpkin/codes/usecases/_show_user/interactor"
 )
 
 func InjectedCreateUser(output driver_ports.APIOutput) controllers.CreateUserController {

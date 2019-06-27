@@ -4,8 +4,8 @@ import (
 	"encoding/json"
 
 	"pumpkin/codes/domain/model"
-	"pumpkin/codes/interface_adapters/create_user/driver_ports"
-	"pumpkin/codes/usecases/create_user/outputport"
+	"pumpkin/codes/interface_adapters/show_user/driver_ports"
+	"pumpkin/codes/usecases/_show_user/outputport"
 )
 
 type userPresenter struct {
