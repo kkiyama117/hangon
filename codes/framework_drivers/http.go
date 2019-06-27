@@ -3,7 +3,7 @@ package framework_drivers
 import (
 	"net/http"
 
-	"pumpkin/codes/interface_adapters/show_user/driver_ports"
+	"pumpkin/codes/interface_adapters/_show_user/driver_ports"
 )
 
 type output struct {

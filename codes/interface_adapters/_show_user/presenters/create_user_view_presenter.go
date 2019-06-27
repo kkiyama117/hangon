@@ -4,7 +4,7 @@ import (
 	"encoding/json"
 
 	"pumpkin/codes/domain/model"
-	"pumpkin/codes/interface_adapters/show_user/driver_ports"
+	"pumpkin/codes/interface_adapters/_show_user/driver_ports"
 	"pumpkin/codes/usecases/_show_user/outputport"
 )
 
