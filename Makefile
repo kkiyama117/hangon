@@ -2,8 +2,10 @@ PROGRAM = pumpkin
 
 # Macro User Define function
 dev_dc = docker-compose -f docker-compose.yml -f lib/docker/development.yml $(1)
+stage_dc = docker-compose -f lib/docker/staging.yml $(1)
 prod_dc = docker-compose -f docker-compose.yml -f lib/docker/production.yml $(1)
 stop_prod = @$(call prod_dc, stop)
+stop_stage = @$(call prod_dc, stop)
 
 #all: init_prod_db
 # docker development
@@ -13,6 +15,7 @@ down_dev: docker-compose.yml lib/docker/development.yml
 	$(call dev_dc, down -v)
 config_dev: docker-compose.yml lib/docker/development.yml
 	$(call dev_dc, config)
+
 # docker production
 build_prod: docker-compose.yml lib/docker/production.yml
 	$(call prod_dc, build)
@@ -31,6 +34,25 @@ down_prod: docker-compose.yml lib/docker/production.yml
 	$(call prod_dc, down -v)
 config_prod: docker-compose.yml lib/docker/production.yml
 	$(call prod_dc, config)
+
+# docker production
+build_stage: docker-compose.yml lib/docker/staging.yml
+	$(call stage_dc, build)
+# call after build
+run_stage:
+	$(call stage_dc, up)
+run_stage_shadow:
+	@$(call stage_dc, up -d)
+init_stage: db/pq run_stage_shadow
+	set_stage_db_sql_files
+	migrate_stage_db
+	$(call stage_dc, stop)
+stop_stage: lib/docker/staging.yml
+	$(call stop_stage)
+down_stage: lib/docker/staging.yml
+	$(call stage_dc, down -v)
+config_stage: lib/docker/staging.yml
+	$(call stage_dc, config)
 
 # goose commands
 # call after `run_prod` command

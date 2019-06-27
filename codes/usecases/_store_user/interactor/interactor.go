@@ -2,20 +2,20 @@ package interactor
 
 import (
 	"pumpkin/codes/domain/model"
-	inputport2 "pumpkin/codes/usecases/_store_user/inputport"
-	outputport2 "pumpkin/codes/usecases/_store_user/outputport"
+	"pumpkin/codes/usecases/_store_user/inputport"
+	"pumpkin/codes/usecases/_store_user/outputport"
 )
 
 type interactor struct {
-	output outputport2.StoreUserOutputPort
+	output outputport.StoreUserOutputPort
 }
 
 type StoreUserInteractor interface {
-	inputport2.StoreUserInputPort
+	inputport.StoreUserInputPort
 }
 
 // inherit input port and invoke presenter
-func NewInteractor(presenter outputport2.StoreUserOutputPort) StoreUserInteractor {
+func NewInteractor(presenter outputport.StoreUserOutputPort) StoreUserInteractor {
 	return &interactor{presenter}
 }
 
