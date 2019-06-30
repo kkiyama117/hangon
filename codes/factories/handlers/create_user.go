@@ -36,7 +36,7 @@ func InjectCreateUser(dbFunc func() *gorm.DB) http.HandlerFunc {
 		// store user usecase
 		// usecase を構築する.
 		dbOutput := framework_drivers.NewDBOutput(dbFunc)
-		storeUser := html.InjectedStoreUser(dbOutput)
+		storeUser := db.InjectedStoreUser(dbOutput)
 		// Usecase処理実行
 		err = storeUser.StoreUser(&user)
 		if user.ID < 0 {
@@ -49,7 +49,7 @@ func InjectCreateUser(dbFunc func() *gorm.DB) http.HandlerFunc {
 		// DIP を意識して, callback の形でレスポンスの処理を埋め込ませる.
 		output := framework_drivers.NewAPIOutput(w)
 		// usecase を構築する.
-		c := db.InjectedShowUser(output)
+		c := html.InjectedShowUser(output)
 		// 下の関数の内部でUsecaseの処理と injectorWithOutput が呼ばれて応答をする.
 		err = c.ShowUser(&user)
 	}

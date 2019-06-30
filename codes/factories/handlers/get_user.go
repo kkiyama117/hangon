@@ -8,7 +8,7 @@ import (
 
 	"github.com/jinzhu/gorm"
 	"pumpkin/codes/domain/model"
-	"pumpkin/codes/factories/usecases/db"
+	"pumpkin/codes/factories/usecases/html"
 	"pumpkin/codes/framework_drivers"
 )
 
@@ -56,7 +56,7 @@ func InjectGetUser(dbFunc func() *gorm.DB) http.HandlerFunc {
 		// DIP を意識して, callback の形でレスポンスの処理を埋め込ませる.
 		output := framework_drivers.NewAPIOutput(w)
 		// usecase を構築する.
-		c := db.InjectedShowUser(output)
+		c := html.InjectedShowUser(output)
 		// 下の関数の内部でUsecaseの処理と injectorWithOutput が呼ばれて応答をする.
 		err = c.ShowUser(&user)
 	}

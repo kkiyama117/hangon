@@ -1,4 +1,4 @@
-package db
+package html
 
 import (
 	"pumpkin/codes/interface_adapters/html/_show_user/controllers"
