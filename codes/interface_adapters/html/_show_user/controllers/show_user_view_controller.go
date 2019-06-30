@@ -2,7 +2,7 @@ package controllers
 
 import (
 	"pumpkin/codes/domain/model"
-	"pumpkin/codes/usecases/_show_user/inputport"
+	"pumpkin/codes/usecases/html/_show_user/inputport"
 )
 
 type controller struct {

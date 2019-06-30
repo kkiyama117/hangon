@@ -2,7 +2,7 @@ package framework_drivers
 
 import (
 	"github.com/jinzhu/gorm"
-	"pumpkin/codes/interface_adapters/_store_user/driver_ports"
+	"pumpkin/codes/interface_adapters/db/_store_user/driver_ports"
 	// import _ "github.com/jinzhu/gorm/dialects/sqlite"
 	"pumpkin/codes/domain/model"
 )

@@ -4,12 +4,12 @@ import (
 	"encoding/json"
 
 	"pumpkin/codes/domain/model"
-	"pumpkin/codes/interface_adapters/_show_user/driver_ports"
-	"pumpkin/codes/usecases/_show_user/outputport"
+	driver_ports2 "pumpkin/codes/interface_adapters/html/_show_user/driver_ports"
+	"pumpkin/codes/usecases/html/_show_user/outputport"
 )
 
 type userPresenter struct {
-	output driver_ports.APIOutput
+	output driver_ports2.APIOutput
 }
 
 type ShowUserPresenter interface {
@@ -17,7 +17,7 @@ type ShowUserPresenter interface {
 	outputport.ShowUserOutputPort
 }
 
-func NewPresenter(output driver_ports.APIOutput) ShowUserPresenter {
+func NewPresenter(output driver_ports2.APIOutput) ShowUserPresenter {
 	return &userPresenter{output}
 }
 

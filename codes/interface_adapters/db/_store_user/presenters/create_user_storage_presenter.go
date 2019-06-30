@@ -2,12 +2,12 @@ package presenters
 
 import (
 	"pumpkin/codes/domain/model"
-	"pumpkin/codes/interface_adapters/_store_user/driver_ports"
-	"pumpkin/codes/usecases/_store_user/outputport"
+	driver_ports2 "pumpkin/codes/interface_adapters/db/_store_user/driver_ports"
+	"pumpkin/codes/usecases/db/_store_user/outputport"
 )
 
 type userPresenter struct {
-	output driver_ports.DBOutput
+	output driver_ports2.DBOutput
 }
 
 type StoreUserPresenter interface {
@@ -15,7 +15,7 @@ type StoreUserPresenter interface {
 	outputport.StoreUserOutputPort
 }
 
-func NewPresenter(output driver_ports.DBOutput) StoreUserPresenter {
+func NewPresenter(output driver_ports2.DBOutput) StoreUserPresenter {
 	return &userPresenter{output}
 }
 
