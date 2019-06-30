@@ -7,9 +7,9 @@ import (
 	"pumpkin/codes/usecases/db/interactor"
 )
 
-func InjectedGetUser(output driver_ports.UserDBOutput) controllers.GetUserController {
-	pres := presenters.NewGetUserPresenter(output)
-	inter := interactor.NewGetUserInteractor(pres)
-	c := controllers.NewGetUserController(inter)
+func InjectedGetUsers(output driver_ports.UserDBOutput) controllers.GetUsersController {
+	pres := presenters.NewGetUsersPresenter(output)
+	inter := interactor.NewGetUsersInteractor(pres)
+	c := controllers.NewGetUsersController(inter)
 	return c
 }
