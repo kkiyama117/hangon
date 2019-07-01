@@ -18,3 +18,8 @@ func (op *output) ShowUser(data []byte) error {
 	_, err := op.writer.Write(data)
 	return err
 }
+
+func (op *output) ShowUsers(data []byte) error {
+	_, err := op.writer.Write(data)
+	return err
+}

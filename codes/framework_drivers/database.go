@@ -27,13 +27,13 @@ func (d *database) GetUser(pUser *model.User) error {
 }
 
 
-func (d *database) GetUsers(pUsers *model.Users) error {
+func (d *database) GetUsers(users model.Users) error {
 	// initialize
 	db := *d.db
 	// noinspection ALL
 	defer db.Close()
 
-	db.Find(pUsers)
+	db.Find(users)
 	return nil
 }
 

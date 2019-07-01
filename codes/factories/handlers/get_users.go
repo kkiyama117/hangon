@@ -26,20 +26,20 @@ func InjectGetUsers(dbFunc func() *gorm.DB) http.HandlerFunc {
 		}
 
 		// store user usecase
-		var pUsers *model.Users
+		var users model.Users
 		// usecase を構築する.
 		dbOutput := framework_drivers.NewDBOutput(dbFunc)
 		getUsers := db.InjectedGetUsers(dbOutput)
 		// Usecase処理実行
-		err = getUsers.GetUsers(pUsers)
+		err = getUsers.GetUsers(users)
 
 		// Response
 		w.Header().Set("Content-Type", "application/json")
 		// DIP を意識して, callback の形でレスポンスの処理を埋め込ませる.
 		output := framework_drivers.NewAPIOutput(w)
 		// usecase を構築する.
-		c := html.InjectedShowUser(output)
+		c := html.InjectedShowUsers(output)
 		// 下の関数の内部でUsecaseの処理と injectorWithOutput が呼ばれて応答をする.
-		err = c.ShowUser(&(*pUsers)[0])
+		err = c.ShowUsers(users)
 	}
 }
