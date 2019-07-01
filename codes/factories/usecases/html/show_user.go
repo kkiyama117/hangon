@@ -1,15 +1,15 @@
 package html
 
 import (
-	"pumpkin/codes/interface_adapters/html/_show_user/controllers"
-	"pumpkin/codes/interface_adapters/html/_show_user/driver_ports"
-	"pumpkin/codes/interface_adapters/html/_show_user/presenters"
+	"pumpkin/codes/interface_adapters/html/user/controllers"
+	"pumpkin/codes/interface_adapters/html/user/driver_ports"
+	"pumpkin/codes/interface_adapters/html/user/presenters"
 	"pumpkin/codes/usecases/html/interactor"
 )
 
 func InjectedShowUser(output driver_ports.APIOutput) controllers.ShowUserController {
 	pres := presenters.NewPresenter(output)
 	inter := interactor.NewShowUserInteractor(pres)
-	c := controllers.NewController(inter)
+	c := controllers.NewShowUserController(inter)
 	return c
 }
