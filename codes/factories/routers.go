@@ -35,10 +35,10 @@ func MainRouter() chi.Router {
 func UserRouter(dbFunc func() *gorm.DB) chi.Router {
 	// users
 	r := chi.NewRouter()
-	r.Get("/", InjectGetUser(dbFunc))
+	r.Get("/", InjectGetUsers(dbFunc))
 	r.Post("/", InjectCreateUser(dbFunc))
 	r.Route("/{userID}", func(r chi.Router) {
-		r.Get("/", nil)
+		r.Get("/", InjectGetUser(dbFunc))
 	})
 	return r
 }

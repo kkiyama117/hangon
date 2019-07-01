@@ -33,7 +33,7 @@ func (d *database) GetUsers(users model.Users) error {
 	// noinspection ALL
 	defer db.Close()
 
-	db.Find(users)
+	db.Find(&users)
 	return nil
 }
 

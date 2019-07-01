@@ -21,11 +21,6 @@ func InjectCreateUser(dbFunc func() *gorm.DB) http.HandlerFunc {
 		body, err := ioutil.ReadAll(r.Body)
 		// get user data
 		user := model.User{}
-		if err != nil {
-			print(err)
-			w.WriteHeader(http.StatusInternalServerError)
-			return
-		}
 		err = json.Unmarshal(body, &user)
 		if user.UserName == "" {
 			w.WriteHeader(http.StatusBadRequest)
@@ -52,5 +47,10 @@ func InjectCreateUser(dbFunc func() *gorm.DB) http.HandlerFunc {
 		c := html.InjectedShowUser(output)
 		// 下の関数の内部でUsecaseの処理と injectorWithOutput が呼ばれて応答をする.
 		err = c.ShowUser(&user)
+		if err != nil {
+			print(err)
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
 	}
 }

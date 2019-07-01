@@ -1,7 +1,6 @@
 package handlers
 
 import (
-	"io/ioutil"
 	"net/http"
 
 	"github.com/jinzhu/gorm"
@@ -16,22 +15,13 @@ func InjectGetUsers(dbFunc func() *gorm.DB) http.HandlerFunc {
 	// handlerとしてサーバー(router)にAttachする起点の関数
 	return func(w http.ResponseWriter, r *http.Request) {
 		// Request
-		// get data from request
-		_, err := ioutil.ReadAll(r.Body)
-		// get user data
-		if err != nil {
-			print(err)
-			w.WriteHeader(http.StatusInternalServerError)
-			return
-		}
-
 		// store user usecase
 		var users model.Users
 		// usecase を構築する.
 		dbOutput := framework_drivers.NewDBOutput(dbFunc)
 		getUsers := db.InjectedGetUsers(dbOutput)
 		// Usecase処理実行
-		err = getUsers.GetUsers(users)
+		err := getUsers.GetUsers(users)
 
 		// Response
 		w.Header().Set("Content-Type", "application/json")
@@ -41,5 +31,10 @@ func InjectGetUsers(dbFunc func() *gorm.DB) http.HandlerFunc {
 		c := html.InjectedShowUsers(output)
 		// 下の関数の内部でUsecaseの処理と injectorWithOutput が呼ばれて応答をする.
 		err = c.ShowUsers(users)
+		if err != nil {
+			print(err)
+			w.WriteHeader(http.StatusInternalServerError)
+			return
+		}
 	}
 }
