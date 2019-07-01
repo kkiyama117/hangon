@@ -21,7 +21,7 @@ type GetUserController interface {
 	GetUser(*model.User) error
 }
 type GetUsersController interface {
-	GetUsers([]*model.User) error
+	GetUsers(*model.Users) error
 }
 type StoreUserController interface {
 	StoreUser(*model.User) error
@@ -41,7 +41,7 @@ func (userController *getUserController) GetUser(pUser *model.User) error {
 func NewGetUsersController(inputPort inputport.GetUsersInputPort) GetUsersController{
 	return &getUsersController{inputPort}
 }
-func (userController *getUsersController) GetUsers(pUsers []*model.User) error {
+func (userController *getUsersController) GetUsers(pUsers *model.Users) error {
 	return userController.inputPort.GetUsers(pUsers)
 }
 

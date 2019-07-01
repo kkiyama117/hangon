@@ -7,3 +7,7 @@ import (
 type ShowUserInputPort interface {
 	DoUsecase(user *model.User) error
 }
+
+type ShowUsersInputPort interface {
+	DoUsecase(users model.Users) error
+}

@@ -34,6 +34,7 @@ func InjectGetUser(dbFunc func() *gorm.DB) http.HandlerFunc {
 			w.WriteHeader(http.StatusInternalServerError)
 			return
 		}
+		// use pointer
 		err = json.Unmarshal(body, &user)
 		if user.UserName == "" {
 			w.WriteHeader(http.StatusBadRequest)

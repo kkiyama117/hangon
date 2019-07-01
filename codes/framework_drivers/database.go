@@ -27,7 +27,7 @@ func (d *database) GetUser(pUser *model.User) error {
 }
 
 
-func (d *database) GetUsers(pUsers []*model.User) error {
+func (d *database) GetUsers(pUsers *model.Users) error {
 	// initialize
 	db := *d.db
 	// noinspection ALL

@@ -7,8 +7,9 @@ type GetUserOutputPort interface {
 }
 
 type GetUsersOutputPort interface {
-	GetUsers(user []*model.User) error
+	GetUsers(users *model.Users) error
 }
+
 type StoreUserOutputPort interface {
 	StoreUser(user *model.User) error
 }

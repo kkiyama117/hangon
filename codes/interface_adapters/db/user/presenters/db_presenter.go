@@ -41,7 +41,7 @@ func NewGetUsersPresenter(output driver_ports.UserDBOutput) GetUsersPresenter {
 	return &getUsersPresenter{output}
 }
 
-func (userPresenter *getUsersPresenter) GetUsers(pUsers []*model.User) error {
+func (userPresenter *getUsersPresenter) GetUsers(pUsers *model.Users) error {
 	err := userPresenter.output.GetUsers(pUsers)
 	if err != nil {
 		return err

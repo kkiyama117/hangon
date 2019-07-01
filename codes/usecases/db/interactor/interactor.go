@@ -6,6 +6,7 @@ import (
 	"pumpkin/codes/usecases/db/outputport"
 )
 
+/* Get User */
 type getUserInteractor struct {
 	output outputport.GetUserOutputPort
 }
@@ -23,6 +24,7 @@ func (inter *getUserInteractor) GetUser(user *model.User) error {
 	return inter.output.GetUser(user)
 }
 
+/* Get Users */
 type getUsersInteractor struct {
 	output outputport.GetUsersOutputPort
 }
@@ -36,10 +38,11 @@ func NewGetUsersInteractor(presenter outputport.GetUsersOutputPort) GetUsersInte
 	return &getUsersInteractor{presenter}
 }
 
-func (inter *getUsersInteractor) GetUsers(users []*model.User) error {
-	return inter.output.GetUsers(users)
+func (inter *getUsersInteractor) GetUsers(pUsers *model.Users) error {
+	return inter.output.GetUsers(pUsers)
 }
 
+/* Store Users */
 type storeUserInteractor struct {
 	output outputport.StoreUserOutputPort
 }
