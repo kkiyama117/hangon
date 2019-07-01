@@ -1,10 +1,10 @@
 package handlers
 
 import (
-	"encoding/json"
-	"io/ioutil"
 	"net/http"
+	"strconv"
 
+	"github.com/go-chi/chi"
 	"github.com/jinzhu/gorm"
 	"pumpkin/codes/domain/model"
 	"pumpkin/codes/factories/usecases/db"
@@ -12,28 +12,25 @@ import (
 	"pumpkin/codes/framework_drivers"
 )
 
-func InjectCreateUser(dbFunc func() *gorm.DB) http.HandlerFunc {
+func InjectGetUser(dbFunc func() *gorm.DB) http.HandlerFunc {
 	// usecase を 構築してから外部のinterfaces に渡す事で依存性の原則を満たす
 	// handlerとしてサーバー(router)にAttachする起点の関数
 	return func(w http.ResponseWriter, r *http.Request) {
 		// Request
 		// get data from request
-		body, err := ioutil.ReadAll(r.Body)
+		// see router.go in parent folder
+		userID, _ := strconv.Atoi(chi.URLParam(r, "userID"))
 		// get user data
-		user := model.User{}
-		err = json.Unmarshal(body, &user)
-		if user.UserName == "" {
-			w.WriteHeader(http.StatusBadRequest)
-			return
+		user := model.User{
+			ID:        uint(userID),
+			DeletedAt: nil,
 		}
-		// User model をゲットした
-
-		// store user usecase
+		// show user usecase
 		// usecase を構築する.
 		dbOutput := framework_drivers.NewDBOutput(dbFunc)
-		storeUser := db.InjectedStoreUser(dbOutput)
+		getUser := db.InjectedGetUser(dbOutput)
 		// Usecase処理実行
-		err = storeUser.StoreUser(&user)
+		err := getUser.GetUser(&user)
 		if user.ID < 0 {
 			w.WriteHeader(http.StatusInternalServerError)
 			return
@@ -47,6 +44,8 @@ func InjectCreateUser(dbFunc func() *gorm.DB) http.HandlerFunc {
 		c := html.InjectedShowUser(output)
 		// 下の関数の内部でUsecaseの処理と injectorWithOutput が呼ばれて応答をする.
 		err = c.ShowUser(&user)
+
+		// cache error
 		if err != nil {
 			print(err)
 			w.WriteHeader(http.StatusInternalServerError)

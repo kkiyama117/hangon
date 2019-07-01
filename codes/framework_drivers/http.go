@@ -3,7 +3,7 @@ package framework_drivers
 import (
 	"net/http"
 
-	"pumpkin/codes/interface_adapters/_show_user/driver_ports"
+	"pumpkin/codes/interface_adapters/html/user/driver_ports"
 )
 
 type output struct {
@@ -15,6 +15,11 @@ func NewAPIOutput(w http.ResponseWriter) driver_ports.APIOutput {
 }
 
 func (op *output) ShowUser(data []byte) error {
+	_, err := op.writer.Write(data)
+	return err
+}
+
+func (op *output) ShowUsers(data []byte) error {
 	_, err := op.writer.Write(data)
 	return err
 }
