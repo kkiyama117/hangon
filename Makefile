@@ -55,6 +55,7 @@ config_stage: lib/docker/staging.yml
 	$(call stage_dc, config)
 
 # goose commands
+# prod
 # call after `run_prod` command
 status_prod_db: set_prod_db_sql_files
 	$(call prod_dc, exec app goose -env production status)
@@ -67,6 +68,30 @@ down_prod_db: set_prod_db_sql_files
 	$(call stop_prod)
 set_prod_db_sql_files: $(PROGRAM) db/pq run_prod_shadow
 	@$(call prod_dc, exec app cp db/pq/* db/migrations)
+
+# stage
+# call after `run_stage` command
+status_stage_db: set_stage_db_sql_files
+	$(call stage_dc, exec app goose -env production status)
+	$(call stop_stage)
+migrate_stage_db: set_stage_db_sql_files
+	$(call stage_dc, exec app goose -env production up)
+	$(call stop_stage)
+down_stage_db: set_stage_db_sql_files
+	$(call stage_dc, exec app goose -env production down)
+	$(call stop_stage)
+set_stage_db_sql_files: $(PROGRAM) db/pq run_stage_shadow
+	@$(call stage_dc, exec app cp db/pq/* db/migrations)
+
+# dev
+status_dev_db: set_dev_db_sql_files↲
+	goose -env development status
+migrate_dev_db: set_dev_db_sql_files↲
+	goose -env development up
+down_dev_db: set_dev_db_sql_files↲
+	goose -env development down
+set_dev_db_sql_files: $(PROGRAM) db/sqlite
+	cp db/sqlite/* db/migrations
 
 clean:
 	$(rm) pumpkin*
