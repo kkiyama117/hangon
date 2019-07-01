@@ -8,7 +8,7 @@ import (
 )
 
 func InjectedShowUser(output driver_ports.APIOutput) controllers.ShowUserController {
-	pres := presenters.NewPresenter(output)
+	pres := presenters.NewShowUserPresenter(output)
 	inter := interactor.NewShowUserInteractor(pres)
 	c := controllers.NewShowUserController(inter)
 	return c

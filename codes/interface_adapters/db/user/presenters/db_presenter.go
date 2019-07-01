@@ -6,6 +6,7 @@ import (
 	"pumpkin/codes/usecases/db/outputport"
 )
 
+/* get user */
 type getUserPresenter struct {
 	output driver_ports.UserDBOutput
 }
@@ -27,7 +28,7 @@ func (userPresenter *getUserPresenter) GetUser(pUser *model.User) error {
 	return nil
 }
 
-
+/* get users */
 type getUsersPresenter struct {
 	output driver_ports.UserDBOutput
 }
@@ -49,6 +50,7 @@ func (userPresenter *getUsersPresenter) GetUsers(pUsers *model.Users) error {
 	return nil
 }
 
+/* store user */
 type storeUserPresenter struct {
 	output driver_ports.UserDBOutput
 }
