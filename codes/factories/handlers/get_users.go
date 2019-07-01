@@ -21,7 +21,7 @@ func InjectGetUsers(dbFunc func() *gorm.DB) http.HandlerFunc {
 		dbOutput := framework_drivers.NewDBOutput(dbFunc)
 		getUsers := db.InjectedGetUsers(dbOutput)
 		// Usecase処理実行
-		err := getUsers.GetUsers(users)
+		err := getUsers.GetUsers(&users)
 
 		// Response
 		w.Header().Set("Content-Type", "application/json")

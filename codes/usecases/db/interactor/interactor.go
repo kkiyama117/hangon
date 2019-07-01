@@ -38,8 +38,8 @@ func NewGetUsersInteractor(presenter outputport.GetUsersOutputPort) GetUsersInte
 	return &getUsersInteractor{presenter}
 }
 
-func (inter *getUsersInteractor) GetUsers(users model.Users) error {
-	return inter.output.GetUsers(users)
+func (inter *getUsersInteractor) GetUsers(pUsers *model.Users) error {
+	return inter.output.GetUsers(pUsers)
 }
 
 /* Store Users */

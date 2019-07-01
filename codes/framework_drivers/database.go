@@ -26,13 +26,13 @@ func (d *database) GetUser(pUser *model.User) error {
 	return nil
 }
 
-func (d *database) GetUsers(users model.Users) error {
+func (d *database) GetUsers(pUsers *model.Users) error {
 	// initialize
 	db := *d.db
 	// noinspection ALL
 	defer db.Close()
 
-	db.Not(model.User{DeletedAt: nil}).Find(&users)
+	db.Not(model.User{DeletedAt: nil}).Find(pUsers)
 	return nil
 }
 
