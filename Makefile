@@ -35,7 +35,7 @@ down_prod: docker-compose.yml lib/docker/production.yml
 config_prod: docker-compose.yml lib/docker/production.yml
 	$(call prod_dc, config)
 
-# docker production
+# docker stage
 build_stage: docker-compose.yml lib/docker/staging.yml
 	$(call stage_dc, build)
 # call after build
@@ -53,6 +53,11 @@ down_stage: lib/docker/staging.yml
 	$(call stage_dc, down -v)
 config_stage: lib/docker/staging.yml
 	$(call stage_dc, config)
+
+# develop
+init_dev: db/sqlite
+	set_dev_db_sql_files
+	migrate_dev_db
 
 # goose commands
 # prod
